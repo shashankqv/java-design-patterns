@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -45,8 +45,8 @@ import org.slf4j.LoggerFactory;
  * should be aware of the downsides including committing to implementation strategy, extending the
  * enum class, serializability and restrictions to coding. These are extensively discussed in Stack
  * Overflow:
- * http://programmers.stackexchange.com/questions/179386/what-are-the-downsides-of-implementing
- * -a-singleton-with-javas-enum
+ * http://programmers.stackexchange.com/questions/179386/what-are-the-downsides-of-implementing-
+ * a-singleton-with-javas-enum
  * <p/>
  * {@link ThreadSafeLazyLoadedIvoryTower} is a Singleton implementation that is initialized on
  * demand. The downside is that it is very slow to access since the whole access method is
@@ -63,47 +63,68 @@ import org.slf4j.LoggerFactory;
  */
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
 
-    // eagerly initialized singleton
-    IvoryTower ivoryTower1 = IvoryTower.getInstance();
-    IvoryTower ivoryTower2 = IvoryTower.getInstance();
-    LOGGER.info("ivoryTower1={}", ivoryTower1);
-    LOGGER.info("ivoryTower2={}", ivoryTower2);
+        // eagerly initialized singleton
+        IvoryTower ivoryTower1 = IvoryTower.getInstance();
+        IvoryTower ivoryTower2 = IvoryTower.getInstance();
+        LOGGER.info("ivoryTower1={}", ivoryTower1);
+        LOGGER.info("ivoryTower2={}", ivoryTower2);
 
-    // lazily initialized singleton
-    ThreadSafeLazyLoadedIvoryTower threadSafeIvoryTower1 =
-        ThreadSafeLazyLoadedIvoryTower.getInstance();
-    ThreadSafeLazyLoadedIvoryTower threadSafeIvoryTower2 =
-        ThreadSafeLazyLoadedIvoryTower.getInstance();
-    LOGGER.info("threadSafeIvoryTower1={}", threadSafeIvoryTower1);
-    LOGGER.info("threadSafeIvoryTower2={}", threadSafeIvoryTower2);
+        // lazily initialized singleton
+        ThreadSafeLazyLoadedIvoryTower threadSafeIvoryTower1 =
+                ThreadSafeLazyLoadedIvoryTower.getInstance();
+        ThreadSafeLazyLoadedIvoryTower threadSafeIvoryTower2 =
+                ThreadSafeLazyLoadedIvoryTower.getInstance();
+        LOGGER.info("threadSafeIvoryTower1={}", threadSafeIvoryTower1);
+        LOGGER.info("threadSafeIvoryTower2={}", threadSafeIvoryTower2);
 
-    // enum singleton
-    EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.INSTANCE;
-    EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
-    LOGGER.info("enumIvoryTower1={}", enumIvoryTower1);
-    LOGGER.info("enumIvoryTower2={}", enumIvoryTower2);
+        // enum singleton
+        EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.INSTANCE;
+        EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
+        LOGGER.info("enumIvoryTower1={}", enumIvoryTower1);
+        LOGGER.info("enumIvoryTower2={}", enumIvoryTower2);
 
-    // double checked locking
-    ThreadSafeDoubleCheckLocking dcl1 = ThreadSafeDoubleCheckLocking.getInstance();
-    LOGGER.info(dcl1.toString());
-    ThreadSafeDoubleCheckLocking dcl2 = ThreadSafeDoubleCheckLocking.getInstance();
-    LOGGER.info(dcl2.toString());
+        // double checked locking
+        ThreadSafeDoubleCheckLocking dcl1 = ThreadSafeDoubleCheckLocking.getInstance();
+        LOGGER.info(dcl1.toString());
+        ThreadSafeDoubleCheckLocking dcl2 = ThreadSafeDoubleCheckLocking.getInstance();
+        LOGGER.info(dcl2.toString());
 
-    // initialize on demand holder idiom
-    InitializingOnDemandHolderIdiom demandHolderIdiom =
-        InitializingOnDemandHolderIdiom.getInstance();
-    LOGGER.info(demandHolderIdiom.toString());
-    InitializingOnDemandHolderIdiom demandHolderIdiom2 =
-        InitializingOnDemandHolderIdiom.getInstance();
-    LOGGER.info(demandHolderIdiom2.toString());
-  }
+        // initialize on demand holder idiom
+        InitializingOnDemandHolderIdiom demandHolderIdiom =
+                InitializingOnDemandHolderIdiom.getInstance();
+        LOGGER.info(demandHolderIdiom.toString());
+        InitializingOnDemandHolderIdiom demandHolderIdiom2 =
+                InitializingOnDemandHolderIdiom.getInstance();
+        LOGGER.info(demandHolderIdiom2.toString());
+
+        // Shashank created Eager initialization.
+        SampleSingleton sampleSingleton1 = SampleSingleton.getINSTANCE();
+        SampleSingleton sampleSingleton2 = SampleSingleton.getINSTANCE();
+
+        LOGGER.info(sampleSingleton1.toString());
+        LOGGER.info(sampleSingleton2.toString());
+
+        // Shashank created Lazy loaded singleton
+
+        LazySingleton lazySingleton1 = LazySingleton.getINSTANCE();
+        LazySingleton lazySingleton2 = LazySingleton.getINSTANCE();
+
+        LOGGER.info(lazySingleton1.toString());
+        LOGGER.info(lazySingleton2.toString());
+
+        EnumSingleton enumSingleton1 = EnumSingleton.INSTANCE;
+        EnumSingleton enumSingleton2 = EnumSingleton.INSTANCE;
+
+        LOGGER.info(enumSingleton1.toString());
+        LOGGER.info(enumSingleton2.toString());
+    }
 }

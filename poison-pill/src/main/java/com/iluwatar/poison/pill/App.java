@@ -26,7 +26,7 @@ package com.iluwatar.poison.pill;
  * One of the possible approaches to terminate Producer-Consumer pattern is using the Poison Pill
  * idiom. If you use Poison Pill as the termination signal then Producer is responsible to notify
  * Consumer that the exchange is over and reject any further messages. The Consumer receiving Poison
- * Pill will stop reading messages from the queue. You must also ensure that the Poison Pill will be
+ * Pill will stop readink g messages from the queue. You must also ensure that the Poison Pill will be
  * the last message that will be read from the queue (if you have prioritized queue then this can be
  * tricky).
  * <p>
