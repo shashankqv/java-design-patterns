@@ -143,6 +143,7 @@
         <module>extension-objects</module>
         <module>marker</module>
 
+        <module>factory</module>
     </modules>
 
     <dependencyManagement>

@@ -73,6 +73,7 @@ public class App {
     public static void main(String[] args) {
 
         // eagerly initialized singleton
+
         IvoryTower ivoryTower1 = IvoryTower.getInstance();
         IvoryTower ivoryTower2 = IvoryTower.getInstance();
         LOGGER.info("ivoryTower1={}", ivoryTower1);
