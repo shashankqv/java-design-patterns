@@ -144,6 +144,7 @@
         <module>marker</module>
         <module>cqrs</module>
 
+        <module>factory</module>
     </modules>
 
     <dependencyManagement>
